@@ -60,7 +60,6 @@ document.querySelector("#addToCart").addEventListener("click", (event) => {
 
     // Création de l'objet à rajouter au panier :
     let panierObjet = {
-        productID,
         productImage,
         productPrice,
         productTitle,
@@ -80,7 +79,6 @@ document.querySelector("#addToCart").addEventListener("click", (event) => {
     let productLocalStorage = JSON.parse(localStorage.getItem("panierObjet"));
     console.log(productLocalStorage);
     localStorage.setItem("articles", JSON.stringify(productLocalStorage));
-
 });
 
 
