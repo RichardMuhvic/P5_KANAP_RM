@@ -59,38 +59,38 @@ document.querySelector("#addToCart").addEventListener("click", (event) => {
 
     // Création de l'objet à rajouter au panier :
     let panierObjet = {
+        productID,
         productTitle,
         productImage,
         productQuantity,
         productColors,
         productPrice,
     };
-    console.log(panierObjet);
 
-
-    //---------------------------------------------------
-    //--------------  LOCALSTORAGE  ---------------------
-    //---------------------------------------------------
+    //-----------------------------------------------------------------
+    //------------------------  LOCALSTORAGE  -------------------------
+    //-----------------------------------------------------------------
 
     // Déclaration de la variable pour la RECUPERATION des données dans le localstorage :
     // Avec conversion au format JSON :
-    let productLocalStorage = JSON.parse(localStorage.getItem("produit"));
+    let productLocalStorage = JSON.parse(localStorage.getItem("product"));
     console.log(productLocalStorage);
 
     //Si le produit est déjà dans le localstorage alors :
     if(productLocalStorage) {
         productLocalStorage.push(panierObjet);
-        localStorage.setItem("produit", JSON.stringify(productLocalStorage))
+        localStorage.setItem("product", JSON.stringify(productLocalStorage))
 
-        console.log(productLocalStorage);
+        console.log(productLocalStorage)
     }
     // Si le produit n'est pas dans le  localstorage alors :
     else {
         productLocalStorage = [];
+        let productFound = productLocalStorage.find(e => e.id === panierObjet.productID  && e.productColors === panierObjet.productColors)
         productLocalStorage.push(panierObjet);
-        localStorage.setItem("produit", JSON.stringify(productLocalStorage));
+        localStorage.setItem("product", JSON.stringify(productLocalStorage));
 
-        console.log(productLocalStorage);
+        console.log(productFound)
+        console.log(productLocalStorage)
     }
-
 });
