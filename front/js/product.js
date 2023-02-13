@@ -67,29 +67,30 @@ document.querySelector("#addToCart").addEventListener("click", (event) => {
     };
     console.log(panierObjet);
 
+
     //---------------------------------------------------
     //--------------  LOCALSTORAGE  ---------------------
     //---------------------------------------------------
 
     // Déclaration de la variable pour la RECUPERATION des données dans le localstorage :
-    // avec conversion au format JSON :
-    let produitLocalStorage = JSON.parse(localStorage.getItem("produit"));
-    console.log(produitLocalStorage);
+    // Avec conversion au format JSON :
+    let productLocalStorage = JSON.parse(localStorage.getItem("produit"));
+    console.log(productLocalStorage);
 
-    //Si le produit est déjà dans le courage alors :
-    if(produitLocalStorage) {
-        produitLocalStorage.push(panierObjet);
-        localStorage.setItem("produit", JSON.stringify(produitLocalStorage));
-        console.log(produitLocalStorage);
+    //Si le produit est déjà dans le localstorage alors :
+    if(productLocalStorage) {
+        productLocalStorage.push(panierObjet);
+        localStorage.setItem("produit", JSON.stringify(productLocalStorage))
 
+        console.log(productLocalStorage);
     }
-    //si le produit n'est pas dans el localstorage alors :
+    // Si le produit n'est pas dans le  localstorage alors :
     else {
-        produitLocalStorage = [];
-        produitLocalStorage.push(panierObjet);
-        localStorage.setItem("produit", JSON.stringify(produitLocalStorage));
+        productLocalStorage = [];
+        productLocalStorage.push(panierObjet);
+        localStorage.setItem("produit", JSON.stringify(productLocalStorage));
 
-        console.log(produitLocalStorage);
+        console.log(productLocalStorage);
     }
 
 });
