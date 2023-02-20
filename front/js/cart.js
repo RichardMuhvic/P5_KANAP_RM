@@ -1,23 +1,36 @@
-let panierPage = document.location.href;
+let productLocalStorage = JSON.parse(localStorage.getItem("product"));
+console.log(productLocalStorage);
 
-let panier = window.localStorage.getItem("product");
 
-console.log(panier);
 
-if (panier === null) {
-    // Récupération des produits dans le panier
-    fetch(`http://localhost:3000/api/products/${productID}`)
-        .then((res) => res.json())
-        .then((product) => {
-            productId(product);
-            //console.log(product);
-    })
-    .catch(function(err) { 
-        console.log("Impossible de récupérer les données du produit", err);
-    }); 
-}
-else {
-    panier = JSON.parse(panier);
-}
+// Création de la boucle for, pour tout poroduit existant dans el panier alors :
+function productPanier(productLocalStorage) {
+    for (let i = o; i < productLocalStorage.length; i++) {
+        console.log(productLocalStorage[i]);
+        
+        const cartItem = document.querySelector("#cart__items");
+        const cartImage = document.querySelector(".cart__item__img");
+        const cartDescription = document.querySelector("cart__item__content");
+        const cartQuantity = document.querySelector("cart__item__content__settings__quantity");
+        //const cartDelete = document.querySelector(".cart__item__content__settings__delete");
+        
+        let productCartItem = document.createElement("article");
+        let productCartImage = document.createElement("img");
+        let productCartDescription = document.createElement("div");
+        let productCartQuantity = document.createElement("div");
+        //let productCartDelete = document.createElement("div");
+        
+        productCartItem = productLocalStorage[i].productID;
+        productCartImage.src = productLocalStorage[i].imageUrl;
+        productCartDescription = productLocalStorage[i].description;
+        productCartQuantity = productLocalStorage[i].productQuantity;
+        //productCartDelete = productLocalStorage
+        
+        cartItem.appendChild(productCartItem);
+        cartImage.appendChild(productCartImage);
+        cartDescription.appendChild(productCartDescription);
+        cartQuantity.appendChild(productCartQuantity);
 
-function
+        console.log(cartItem);
+    };
+};
