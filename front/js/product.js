@@ -78,6 +78,10 @@ document.querySelector("#addToCart").addEventListener("click", (event) => {
 
     //Si le produit est déjà dans le localstorage alors :
     if(productLocalStorage) {
+        if(productLocalStorage) {
+            let productFound = productLocalStorage.find(e => e.id === panierObjet.productID  && e.productColors === panierObjet.productColors)
+            console.log(productFound);
+        }
         productLocalStorage.push(panierObjet);
         localStorage.setItem("product", JSON.stringify(productLocalStorage))
 
@@ -86,8 +90,7 @@ document.querySelector("#addToCart").addEventListener("click", (event) => {
     // Si le produit n'est pas dans le  localstorage alors :
     else {
         productLocalStorage = [];
-        let productFound = productLocalStorage.find(e => e.id === panierObjet.productID  && e.productColors === panierObjet.productColors)
-        productLocalStorage.push(panierObjet);
+        
         localStorage.setItem("product", JSON.stringify(productLocalStorage));
 
         console.log(productFound)
