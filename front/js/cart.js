@@ -1,36 +1,52 @@
+// Récupération des objets stockés dans le localstorage :
 let productLocalStorage = JSON.parse(localStorage.getItem("product"));
 console.log(productLocalStorage);
 
+fetch(`http://localhost:3000/api/products`)
+    .then((res) => res.json())
+    .then((product) => {
+        productLocalStorage(product);
+        //console.log(product);
+    })
+    .catch(function(err) { 
+        console.log("Impossible de récupérer les données du produit", err);
+    });
 
 
-// Création de la boucle for, pour tout poroduit existant dans el panier alors :
-function productPanier(productLocalStorage) {
-    for (let i = o; i < productLocalStorage.length; i++) {
-        console.log(productLocalStorage[i]);
-        
-        const cartItem = document.querySelector("#cart__items");
-        const cartImage = document.querySelector(".cart__item__img");
-        const cartDescription = document.querySelector("cart__item__content");
-        const cartQuantity = document.querySelector("cart__item__content__settings__quantity");
-        //const cartDelete = document.querySelector(".cart__item__content__settings__delete");
-        
-        let productCartItem = document.createElement("article");
-        let productCartImage = document.createElement("img");
-        let productCartDescription = document.createElement("div");
-        let productCartQuantity = document.createElement("div");
-        //let productCartDelete = document.createElement("div");
-        
-        productCartItem = productLocalStorage[i].productID;
-        productCartImage.src = productLocalStorage[i].imageUrl;
-        productCartDescription = productLocalStorage[i].description;
-        productCartQuantity = productLocalStorage[i].productQuantity;
-        //productCartDelete = productLocalStorage
-        
-        cartItem.appendChild(productCartItem);
-        cartImage.appendChild(productCartImage);
-        cartDescription.appendChild(productCartDescription);
-        cartQuantity.appendChild(productCartQuantity);
+const sectionItem = document.querySelector("#cart__items");
 
-        console.log(cartItem);
-    };
-};
+//voir si le panier est vide ou non :
+/*if (productLocalStorage) {
+    console.log("le panier contient un produit");
+    let blockPanier = [];
+
+    blockPanier = blockPanier = `
+        <article class="cart__item" data-id="${productLocalStorage.productID}" data-color="${productLocalStorage.productColors}">
+            <div class="cart__item__img">
+                <img src="../images/product01.jpg" alt="Photographie d'un canapé">
+            </div>
+            <div class="cart__item__content">
+                <div class="cart__item__content__description">
+                    <h2>{itemName}</h2>
+                    <p>${productLocalStorage.productColors}</p>
+                    <p>${productLocalStorage.productPrice} €</p>
+                </div>
+                <div class="cart__item__content__settings">
+                    <div class="cart__item__content__settings__quantity">
+                        <p>Qté : ${productLocalStorage.productQuantity}</p>
+                        <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="42">
+                    </div>
+                    <div class="cart__item__content__settings__delete">
+                        <p class="deleteItem">Supprimer</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+    `
+ 
+    console.log(productLocalStorage.productColors);
+
+}
+else {
+    console.log("le panier est vide")
+}*/
