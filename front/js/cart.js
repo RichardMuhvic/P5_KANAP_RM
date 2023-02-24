@@ -3,10 +3,12 @@ let productLocalStorage = JSON.parse(localStorage.getItem("product"));
 console.log(productLocalStorage);
 
 fetch(`http://localhost:3000/api/products`)
-    .then((res) => res.json())
+    .then((res) => {
+        res.json()
+        console.log("ça marche 1");
+    })
     .then((product) => {
-        productLocalStorage(product);
-        //console.log(product);
+        console.log("ça marche 2");
     })
     .catch(function(err) { 
         console.log("Impossible de récupérer les données du produit", err);
@@ -15,6 +17,7 @@ fetch(`http://localhost:3000/api/products`)
 
 const sectionItem = document.querySelector("#cart__items");
 
+console.log(productLocalStorage[0].productID);
 //voir si le panier est vide ou non :
 /*if (productLocalStorage) {
     console.log("le panier contient un produit");
