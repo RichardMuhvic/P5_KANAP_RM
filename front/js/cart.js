@@ -87,7 +87,7 @@ itemCartContentSettingsDelete.classList.add("cart__item__content__settings__dele
 
 const sectionBtnDeleteItem = document.querySelector(".cart__item__content__settings__delete");
 let deleteItem = document.createElement("p");
-sectionCartItemContentSettingsDelete.appendChild(deleteItem);
+sectionBtnDeleteItem.appendChild(deleteItem);
 deleteItem.classList.add(".deleteItem");
 
 console.log(sectionItem);
