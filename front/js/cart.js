@@ -19,6 +19,7 @@ fetch(`http://localhost:3000/api/products/`)
 
 for (i =0; i < productLocalStorage.length; i++) {
     console.log(productLocalStorage.length);
+
     //-------------------------------------------------------------------
     //----------Création de l'intégralité du block----------------------
     //-------------------------------------------------------------------
@@ -77,11 +78,10 @@ for (i =0; i < productLocalStorage.length; i++) {
     sectionCartContentSetting.appendChild(itemCartContentSettings);
     itemCartContentSettings.classList.add("cart__item__content__settings");
 
+    const sectionCartItemContentSettingsQuantity = document.querySelector(".cart__item__content__settings")
     let itemCartContentSettingsQuantity = document.createElement("div");
-    sectionCartContentSetting.appendChild(itemCartContentSettingsQuantity);
+    sectionCartItemContentSettingsQuantity.appendChild(itemCartContentSettingsQuantity);
     itemCartContentSettingsQuantity.classList.add("cart__item__content__settings__quantity");
-
-
 
     const sectionQuantityProduit = document.querySelector(".cart__item__content__settings__quantity");
     let itemQuantityProduit = document.createElement("p");
@@ -93,7 +93,6 @@ for (i =0; i < productLocalStorage.length; i++) {
     itemInputQuantity.classList.add("itemQuantity");
     // CETTE LIGNE, récupération de la quantité du produit au localtstorage
     itemInputQuantity.value = productLocalStorage[i].productQuantity;
-
 
     //---------------------------------------------------------------------------//
     // ----- création du bloc, div, cart__item__content__settings__delete ---//
