@@ -51,23 +51,15 @@ function productId(product) {
 document.querySelector("#addToCart").addEventListener("click", (event) => {
     event.preventDefault();
     // Création des variables :
-    let productTitle = document.querySelector("#title").innerText;
-    let productImage = document.querySelector(".item__img").src;
-    let productPrice = document.querySelector("#price").innerText;
     let productQuantity = document.querySelector('#quantity').value;
     let productColors = document.querySelector("#colors").value;
 
     // Création de l'objet à rajouter au panier :
     let panierObjet = {
         productID,
-        productTitle,
-        productImage,
         productQuantity,
         productColors,
-        productPrice,
     };
-
-
     //-----------------------------------------------------------------
     //------------------------  LOCALSTORAGE  -------------------------
     //-----------------------------------------------------------------
@@ -76,13 +68,12 @@ document.querySelector("#addToCart").addEventListener("click", (event) => {
 
     // Avec conversion au format JSON :
     let productLocalStorage = JSON.parse(localStorage.getItem("product"));
-
     //Si le produit est déjà dans le localstorage alors :
     if(productLocalStorage) {
-        /*if(productLocalStorage) {
-            let productFound = productLocalStorage.find(e => e.id === panierObjet.productID  && e.productColors === panierObjet.productColors)
-            console.log(productFound);
-        }*/
+        if(productLocalStorage) {
+            /*let productFound = productLocalStorage.find(e => e.id === panierObjet.productID  && e.productColors === panierObjet.productColors)
+            console.log(productFound);*/
+        }
         productLocalStorage.push(panierObjet);
         localStorage.setItem("product", JSON.stringify(productLocalStorage))
 

@@ -44,4 +44,3 @@ function display(products) {
     };
 };
 
-display(products);
