@@ -1,11 +1,7 @@
 // Récupération des objets stockés dans le localstorage :
 let productLocalStorage = JSON.parse(localStorage.getItem("product"));
-console.log(productLocalStorage);
 
-
-for (let i=0; i<productLocalStorage.length; i++) {
-    console.log(productLocalStorage)
-    
+for (let i=0; i<productLocalStorage.length; i++) {    
     fetch(`http://localhost:3000/api/products/${productLocalStorage[i].productID}`)
         .then((res) => res.json())
         .then((value) => {
@@ -44,23 +40,36 @@ for (let i=0; i<productLocalStorage.length; i++) {
     }
 };
 
+const articleProductPanier = document.querySelector("#cart__items")
 // Modification de la quantité d'un produit
-/*let quantityChanged = document.querySelector(".itemQuantity");
-quantityChanged.addEventListener("change", (event) => {
-    event.preventDefault();
+const quantityChanged = async(articleProductPanier) => {
+    await articleProductPanier
+    let selectionItemQuantity = document.querySelector(".itemQuantity");
+    console.log(selectionItemQuantity)
+
+    document.querySelector(".itemQuantity").addEventListener("click", function() {
+        input.value = parseInt(input.value)+1; 
+        alert("ça clique clique boum")
+    })
+}
+console.log(quantityChanged)
+
+/*quantityChanged.addEventListener("click", function() {
     //changement de la quantité ici :
-    productStorage.productQuantity = event.target.value;
-    console.log(productQuantity);
-});
+    input.value = parseInt(input.value)+1
+    input.value = parseInt(input.value)-1
+});*/
 
 // Suppression d'un produit
-const productDelete = document.querySelector(".deleteItem");
-productDelete.addEventListener("click", function() {
+/*document.querySelector(".deleteItem").addEventListener("click", function() {
     localStorage.removeItem("productID");
 });*/
+
 //afficher le prix total des produits:
 
-// -------------------------------------- //
+
+
+/*// -------------------------------------- //
 // ------------ FORMULAIRE -------------- //
 // -------------------------------------- //
 let form = document.querySelector(".cart__order__form");
@@ -101,14 +110,14 @@ form.address.addEventListener("change", function() {
     validationAddress(this);
 })
 const validationAddress = function(inputAddress) {
-    let addressRegEx = new RegExp("^[1-9]{1-3}[a-z]{2-4}[/\w/\n]{5,70}$", "g");
+    let addressRegEx = new RegExp("^[1-9]{1-3}[a-z]{2-6}[/\w/\n]{5,70}$", "g");
     let messageAddress = document.querySelector("#addressErrorMsg")
     // Ecoute du test de l'expression régulière :
     if(addressRegEx.test(inputAddress.value)) {
-        messageAddress.innerHTML = "addresse valide";
+        messageAddress.innerHTML = "adresse valide";
     }
     else{
-        messageAddress.innerHTML = "addresse invalide";
+        messageAddress.innerHTML = "adresse invalide";
     }
 };
 
@@ -143,3 +152,24 @@ const validationEmail = function(inputEmail) {
         message.innerHTML = "email invalide";
     }
 };
+
+let firstName = validationFirstName;
+let lastName = validationLastName;
+let address = validationAddress;
+let city = validationCity;
+let email = validationEmail;
+
+let formContact = {
+    firstName,
+    lastName,
+    address,
+    city,
+    email
+};
+console.log(formContact)
+
+let response = fetch("http://localhost:3000/api/products/order", {
+    method: 'POST',
+    body: JSON.stringify(formContact)
+})
+*/
