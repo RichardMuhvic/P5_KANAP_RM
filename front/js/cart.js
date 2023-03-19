@@ -1,6 +1,45 @@
 // Récupération des objets stockés dans le localstorage :
 let productLocalStorage = JSON.parse(localStorage.getItem("product"));
 
+function panierProduct(product, productStorage) {
+    let articleProductPanier = document.querySelector("#cart__items");
+
+    articleProductPanier.innerHTML += 
+        `<article class="cart__item" data-id="${product.productID}" data-color="${product.productColors}">
+            <div class="cart__item__img">
+                <img src="${product.imageUrl}" alt="${product.altTxt}">
+            </div>
+            <div class="cart__item__content">
+                <div class="cart__item__content__description">
+                    <h2>"${product.name}"</h2>
+                    <p>"${productStorage.productColors}"</p>
+                    <p>"${product.price}"€</p>
+                </div>
+                <div class="cart__item__content__settings">
+                    <div class="cart__item__content__settings__quantity">
+                        <p>Qté : </p>
+                        <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="${productStorage.productQuantity}">
+                    </div>
+                    <div class="cart__item__content__settings__delete">
+                        <p class="deleteItem">Supprimer</p>
+                    </div>
+                </div>
+            </div>
+        </article>`;
+
+    const div = document.querySelector(".cart__item");
+    console.log(div.dataset.id);
+    console.log(div.dataset.color)
+
+    /*const itemQuantity = document.getElementsByClassName("itemQuantity");
+    console.log(itemQuantity)
+        
+    document.getElementsByClassName("itemQuantity").addEventListener("click", function() {
+        console.log("ça clique clique boum")
+    })*/
+}
+
+
 for (let i=0; i<productLocalStorage.length; i++) {    
     fetch(`http://localhost:3000/api/products/${productLocalStorage[i].productID}`)
         .then((res) => res.json())
@@ -11,48 +50,10 @@ for (let i=0; i<productLocalStorage.length; i++) {
         .catch(function(err) { 
             console.log("Impossible de récupérer les données du produit", err);
         }); 
-
-    function panierProduct(product, productStorage) {
-        let articleProductPanier = document.querySelector("#cart__items");
-
-        articleProductPanier.innerHTML += 
-            `<article class="cart__item" data-id="${product.productID}" data-color="${product.productColors}">
-                <div class="cart__item__img">
-                    <img src="${product.imageUrl}" alt="${product.altTxt}">
-                </div>
-                <div class="cart__item__content">
-                    <div class="cart__item__content__description">
-                        <h2>"${product.name}"</h2>
-                        <p>"${productStorage.productColors}"</p>
-                        <p>"${product.price}"€</p>
-                    </div>
-                    <div class="cart__item__content__settings">
-                        <div class="cart__item__content__settings__quantity">
-                            <p>Qté : </p>
-                            <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="${productStorage.productQuantity}">
-                        </div>
-                        <div class="cart__item__content__settings__delete">
-                            <p class="deleteItem">Supprimer</p>
-                        </div>
-                    </div>
-                </div>
-            </article>`;
-    }
 };
 
-const articleProductPanier = document.querySelector("#cart__items")
-// Modification de la quantité d'un produit
-const quantityChanged = async(articleProductPanier) => {
-    await articleProductPanier
-    let selectionItemQuantity = document.querySelector(".itemQuantity");
-    console.log(selectionItemQuantity)
 
-    document.querySelector(".itemQuantity").addEventListener("click", function() {
-        input.value = parseInt(input.value)+1; 
-        alert("ça clique clique boum")
-    })
-}
-console.log(quantityChanged)
+
 
 /*quantityChanged.addEventListener("click", function() {
     //changement de la quantité ici :

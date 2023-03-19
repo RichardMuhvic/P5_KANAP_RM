@@ -47,7 +47,7 @@ function productId(product) {
 };
 
 
-// Création de addEventListener pour envoyer le produit au click du bouton "'ajout au panier" :
+// Création de addEventListener pour envoyer le produit au click du bouton "ajout au panier" :
 document.querySelector("#addToCart").addEventListener("click", (event) => {
     event.preventDefault();
     // Création des variables :
