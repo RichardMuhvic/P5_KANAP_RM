@@ -6,7 +6,7 @@ for (let i=0; i<productLocalStorage.length; i++) {
     fetch(`http://localhost:3000/api/products/${productLocalStorage[i].productID}`)
         .then((res) => res.json())
         .then((value) => {
-            //panierProduct(value, productLocalStorage[i])
+            panierProduct(value, productLocalStorage[i])
             console.log("ça marche");
         })
         .catch(function(err) { 
@@ -15,146 +15,94 @@ for (let i=0; i<productLocalStorage.length; i++) {
 };
 
 
-//function panierProduct(product, productStorage)
-for (i= 0; i<productLocalStorage.length; i++) {
-    console.log(productLocalStorage);
-
-    //-------------------------------------------------------
-    // ------------ Création du block dans le DOM ------------
-
+function panierProduct(product, productStorage) {
+    //----------Création de l'intégralité du block----------------------
     const sectionItem = document.getElementById("cart__items");
     let itemArticle = document.createElement("article");
     sectionItem.appendChild(itemArticle);
     itemArticle.classList.add("cart__item");
     console.log(sectionItem)
-    console.log(itemArticle)
 
-    const sectionCartItem = document.getElementsByClassName("cart__item");
+    const sectionCartItem = document.getElementsByClassName("cart__item")[0];
     let itemCartImg = document.createElement("div");
     sectionCartItem.appendChild(itemCartImg);
     itemCartImg.classList.add("cart__item__img");
     console.log(sectionCartItem)
-        
-    const sectionImg = document.getElementsByClassName("cart__item__img");
+
+    const sectionImg = document.getElementsByClassName("cart__item__img")[0];
     let itemImg = document.createElement("img");
-    // A CETTE LIGNE Récupération de l'image depuis l'API du produit choisi dans le panier //
-    // "${product.imageUrl}"
     sectionImg.appendChild(itemImg);
-        
-    //--------------------------------------------------------------//
+    console.log(sectionImg)
+    itemImg.src = productStorage.imageUrl;
+
     // ----- création du bloc, div , cart__item__content ---------- //
     let itemCartContent = document.createElement("div");
     sectionCartItem.appendChild(itemCartContent);
     itemCartContent.classList.add("cart__item__content");
-        
-    //-----------------------------------------------------------------------//
+    console.log(itemCartContent)
+
     // ------ cration du bloc, div, cart__item__content__description --------//
-    //const sectionCartContent = document.getElementsByClassName("cart__item__content");
+    const sectionCartContent = document.getElementsByClassName("cart__item__content")[0];
     let itemCartContentDescription = document.createElement("div");
-    sectionCartItem.appendChild(itemCartContentDescription);
+    sectionCartContent.appendChild(itemCartContentDescription);
     itemCartContentDescription.classList.add("cart__item__content__description");
-        
-    const sectionNomProduit = document.getElementsByClassName("cart__item__content__description");
+    console.log(sectionCartContent)
+
+    const sectionNomProduit = document.getElementsByClassName("cart__item__content__description")[0];
     let itemNomProduit = document.createElement("h2");
     sectionNomProduit.appendChild(itemNomProduit);
-    // CETTE LIGNE, récupération du nom du produit au loczaltstorage
-    // "${product.name}"
+    console.log(sectionNomProduit)
+    itemNomProduit.innerText = product.productTitle;
 
-    const sectionCouleurProduit = document.getElementsByClassName("cart__item__content__description");
+    const sectionCouleurProduit = document.getElementsByClassName("cart__item__content__description")[0];
     let itemCouleurProduit = document.createElement("p");
     sectionCouleurProduit.appendChild(itemCouleurProduit);
-    // CETTE LIGNE, récupération de la couleur choisi au localstorage
-    // "${productStorage.productColors}"
+    console.log(sectionCouleurProduit)
+    itemCouleurProduit.innerText = productStorage.productColors ;
 
-    const sectionPrixProduit = document.getElementsByClassName("cart__item__content__description");
+    const sectionPrixProduit = document.getElementsByClassName("cart__item__content__description")[0];
     let itemPrixProduit = document.createElement("p");
     sectionPrixProduit.appendChild(itemPrixProduit);
-    // CETTE lIGNE, récupération du prix du produit au localstorage
-    // "${product.price}"
+    console.log(sectionPrixProduit)
+    itemPrixProduit.innerText = product.productPrice;
 
-    //-----------------------------------------------------------------------//
     // ----- création du bloc, div, cart__item__content__settings------------//
-    const sectionCartContentSetting = document.getElementsByClassName("cart__item__content");
+    const sectionCartContentSetting = document.getElementsByClassName("cart__item__content")[0];
     let itemCartContentSettings = document.createElement("div");
     sectionCartContentSetting.appendChild(itemCartContentSettings);
     itemCartContentSettings.classList.add("cart__item__content__settings");
-        
+    console.log(sectionCartContentSetting)
+
     let itemCartContentSettingsQuantity = document.createElement("div");
     sectionCartContentSetting.appendChild(itemCartContentSettingsQuantity);
     itemCartContentSettingsQuantity.classList.add("cart__item__content__settings__quantity");
-        
-    const sectionQuantityProduit = document.getElementsByClassName("cart__item__content__settings__quantity");
+
+    const sectionQuantityProduit = document.getElementsByClassName("cart__item__content__settings__quantity")[0];
     let itemQuantityProduit = document.createElement("p");
     sectionQuantityProduit.appendChild(itemQuantityProduit);
-    // CETTE LIGNE, récupération de la quantité du produit au loczaltstorage
-    // value="${productStorage.productQuantity}"
+    console.log(sectionQuantityProduit)
 
-    const sectionChangementQuantityProduit = document.getElementsByClassName("cart__item__content__settings__quantity");
-    let itemChangementQuantityProduit = document.createElement("input");
-    sectionChangementQuantityProduit.appendChild(itemChangementQuantityProduit);
-        
-    //---------------------------------------------------------------------------//
+    const sectionInputQuantity = document.getElementsByClassName("cart__item__content__settings__quantity")[0];
+    let itemInputQuantity = document.createElement("input");
+    sectionInputQuantity.appendChild(itemInputQuantity);
+    itemInputQuantity.classList.add("itemQuantity");
+    console.log(sectionInputQuantity)
+    itemInputQuantity.value = productStorage.productQuantity;
+
     // ----- création du bloc, div, cart__item__content__settings__delete ---//
-    const sectionCartItemContentSettingsDelete = document.getElementsByClassName("cart__item__content__settings");
+    const sectionCartItemContentSettingsDelete = document.getElementsByClassName(".cart__item__content__settings")[0];
     let itemCartContentSettingsDelete = document.createElement("div");
     sectionCartItemContentSettingsDelete.appendChild(itemCartContentSettingsDelete);
     itemCartContentSettingsDelete.classList.add("cart__item__content__settings__delete");
-        
-    const sectionBtnDeleteItem = document.getElementsByClassName("cart__item__content__settings__delete");
+
+    const sectionBtnDeleteItem = document.getElementsByClassName("cart__item__content__settings__delete")[0];
     let deleteItem = document.createElement("p");
-    sectionCartItemContentSettingsDelete.appendChild(deleteItem);
+    sectionBtnDeleteItem.appendChild(deleteItem);
     deleteItem.classList.add(".deleteItem");
-        
+
     console.log(sectionItem);
     console.log(sectionCartItem)
-    console.log(sectionImg)
-    console.log(sectionCartContent)
-    console.log(sectionNomProduit)
-    console.log(sectionCouleurProduit)
-    console.log(sectionCartContentSetting)
-    console.log(sectionQuantityProduit)
-    console.log(sectionChangementQuantityProduit)
-    console.log(sectionCartItemContentSettingsDelete)
-    console.log(sectionBtnDeleteItem)
-
-
-    /*let articleProductPanier = document.querySelector("#cart__items");
-
-        articleProductPanier.innerHTML += 
-            `<article class="cart__item" data-id="${product.productID}" data-color="${product.productColors}">
-                <div class="cart__item__img">
-                    <img src="${product.imageUrl}" alt="${product.altTxt}">
-                </div>
-                <div class="cart__item__content">
-                    <div class="cart__item__content__description">
-                        <h2>"${product.name}"</h2>
-                        <p>"${productStorage.productColors}"</p>
-                        <p>"${product.price}"€</p>
-                    </div>
-                    <div class="cart__item__content__settings">
-                        <div class="cart__item__content__settings__quantity">
-                            <p>Qté : </p>
-                            <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="${productStorage.productQuantity}">
-                        </div>
-                        <div class="cart__item__content__settings__delete">
-                            <p class="deleteItem">Supprimer</p>
-                        </div>
-                    </div>
-                </div>
-            </article>`;*/
-
-    /*const div = document.querySelector(".cart__item");
-    console.log(div.dataset.id);
-    console.log(div.dataset.color)
-
-    let quantityChanged = document.querySelector("itemQuantity");
-
-    quantityChanged.addEventListener("click", function() {
-        alert("ça clique")
-    });*/
-}
-
-
+};
 
 /*quantityChanged.addEventListener("click", function() {
     //changement de la quantité ici :
