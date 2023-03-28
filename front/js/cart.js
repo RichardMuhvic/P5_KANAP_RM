@@ -21,57 +21,48 @@ function panierProduct(product, productStorage) {
     let itemArticle = document.createElement("article");
     sectionItem.appendChild(itemArticle);
     itemArticle.classList.add("cart__item");
-    console.log(sectionItem)
 
     const sectionCartItem = document.getElementsByClassName("cart__item")[0];
     let itemCartImg = document.createElement("div");
     sectionCartItem.appendChild(itemCartImg);
     itemCartImg.classList.add("cart__item__img");
-    console.log(sectionCartItem)
 
     const sectionImg = document.getElementsByClassName("cart__item__img")[0];
     let itemImg = document.createElement("img");
     sectionImg.appendChild(itemImg);
-    console.log(sectionImg)
-    itemImg.src = productStorage.imageUrl;
+    itemImg.src = product.imageUrl;
 
     // ----- création du bloc, div , cart__item__content ---------- //
     let itemCartContent = document.createElement("div");
     sectionCartItem.appendChild(itemCartContent);
     itemCartContent.classList.add("cart__item__content");
-    console.log(itemCartContent)
 
     // ------ cration du bloc, div, cart__item__content__description --------//
     const sectionCartContent = document.getElementsByClassName("cart__item__content")[0];
     let itemCartContentDescription = document.createElement("div");
     sectionCartContent.appendChild(itemCartContentDescription);
     itemCartContentDescription.classList.add("cart__item__content__description");
-    console.log(sectionCartContent)
 
     const sectionNomProduit = document.getElementsByClassName("cart__item__content__description")[0];
     let itemNomProduit = document.createElement("h2");
     sectionNomProduit.appendChild(itemNomProduit);
-    console.log(sectionNomProduit)
-    itemNomProduit.innerText = product.productTitle;
+    itemNomProduit.innerText = product.name;
 
     const sectionCouleurProduit = document.getElementsByClassName("cart__item__content__description")[0];
     let itemCouleurProduit = document.createElement("p");
     sectionCouleurProduit.appendChild(itemCouleurProduit);
-    console.log(sectionCouleurProduit)
     itemCouleurProduit.innerText = productStorage.productColors ;
 
     const sectionPrixProduit = document.getElementsByClassName("cart__item__content__description")[0];
     let itemPrixProduit = document.createElement("p");
     sectionPrixProduit.appendChild(itemPrixProduit);
-    console.log(sectionPrixProduit)
-    itemPrixProduit.innerText = product.productPrice;
+    itemPrixProduit.innerText = product.price;
 
     // ----- création du bloc, div, cart__item__content__settings------------//
     const sectionCartContentSetting = document.getElementsByClassName("cart__item__content")[0];
     let itemCartContentSettings = document.createElement("div");
     sectionCartContentSetting.appendChild(itemCartContentSettings);
     itemCartContentSettings.classList.add("cart__item__content__settings");
-    console.log(sectionCartContentSetting)
 
     let itemCartContentSettingsQuantity = document.createElement("div");
     sectionCartContentSetting.appendChild(itemCartContentSettingsQuantity);
@@ -80,13 +71,11 @@ function panierProduct(product, productStorage) {
     const sectionQuantityProduit = document.getElementsByClassName("cart__item__content__settings__quantity")[0];
     let itemQuantityProduit = document.createElement("p");
     sectionQuantityProduit.appendChild(itemQuantityProduit);
-    console.log(sectionQuantityProduit)
 
     const sectionInputQuantity = document.getElementsByClassName("cart__item__content__settings__quantity")[0];
     let itemInputQuantity = document.createElement("input");
     sectionInputQuantity.appendChild(itemInputQuantity);
     itemInputQuantity.classList.add("itemQuantity");
-    console.log(sectionInputQuantity)
     itemInputQuantity.value = productStorage.productQuantity;
 
     // ----- création du bloc, div, cart__item__content__settings__delete ---//
@@ -99,11 +88,7 @@ function panierProduct(product, productStorage) {
     let deleteItem = document.createElement("p");
     sectionBtnDeleteItem.appendChild(deleteItem);
     deleteItem.classList.add(".deleteItem");
-
-    console.log(sectionItem);
-    console.log(sectionCartItem)
 };
-
 /*quantityChanged.addEventListener("click", function() {
     //changement de la quantité ici :
     input.value = parseInt(input.value)+1
