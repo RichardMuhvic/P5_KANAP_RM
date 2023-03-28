@@ -89,6 +89,19 @@ function panierProduct(product, productStorage) {
     sectionBtnDeleteItem.appendChild(deleteItem);
     deleteItem.classList.add(".deleteItem");
 };
+//------------------------------------------------------
+//------------------création de la boucle---------------
+/*------------------------------------------------------
+for (let i=0 ; i<"jenesaispasquoiecrire", i++) {
+    "boucle la fonction au nombre de produits présent dans le panier"
+}
+*/
+
+
+
+//------------------------------------------------------
+//-------Changement quantité et suppression produit-----
+//------------------------------------------------------
 /*quantityChanged.addEventListener("click", function() {
     //changement de la quantité ici :
     input.value = parseInt(input.value)+1
@@ -104,9 +117,9 @@ function panierProduct(product, productStorage) {
 
 
 
-/*// -------------------------------------- //
-// ------------ FORMULAIRE -------------- //
-// -------------------------------------- //
+/*-----------------------------------------------------
+--------------------- FORMULAIRE ----------------------
+-------------------------------------------------------
 let form = document.querySelector(".cart__order__form");
 //prenom
 form.firstName.addEventListener("change", function() {
