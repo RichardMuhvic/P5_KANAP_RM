@@ -55,7 +55,7 @@ document.querySelector("#addToCart").addEventListener("click", (event) => {
     let productColors = document.querySelector("#colors").value;
 
     // Création de l'objet à rajouter au panier :
-    let panierObjet = {
+    let product = {
         productID,
         productQuantity,
         productColors,
@@ -70,19 +70,22 @@ document.querySelector("#addToCart").addEventListener("click", (event) => {
     let productLocalStorage = JSON.parse(localStorage.getItem("product"));
     //Si le produit est déjà dans le localstorage alors :
     if(productLocalStorage) {
-        if(productLocalStorage) {
-            /*let productFound = productLocalStorage.find(e => e.id === panierObjet.productID  && e.productColors === panierObjet.productColors)
-            console.log(productFound);*/
+        if(productLocalStorage.productID === product.productID) {
+            let productFound = productLocalStorage.find(e => e.productID === product.productID && e.productColors === product.productColors)
+            console.log(productFound)
+            if(productLocalStorage) {
+                productFound.productQuantity = parseInt(productFound.productQuantity) + parseInt(product.productQuantity) + 0;
+                console.log(productFound);
+            }
+            localStorage.setItem("product", JSON.stringify(productLocalStorage))
+            console.log(productLocalStorage)
         }
-        productLocalStorage.push(panierObjet);
-        localStorage.setItem("product", JSON.stringify(productLocalStorage))
-
-        console.log(productLocalStorage)
+        
     }
     // Si le produit n'est pas dans le  localstorage alors :
     else {
         productLocalStorage = [];
-        productLocalStorage.push(panierObjet);
+        productLocalStorage.push(product);
         localStorage.setItem("product", JSON.stringify(productLocalStorage));
         
         console.log(productLocalStorage)

@@ -73,7 +73,6 @@ function panierProduct(product, productStorage) {
     itemInputQuantity.value = productStorage.productQuantity;
 
     // ----- création du bloc, div, cart__item__content__settings__delete ---//
-    const sectionCartItemContentSettingsDelete = document.getElementsByClassName(".cart__item__content__settings")[0];
     let itemCartContentSettingsDelete = document.createElement("div");
     itemCartContentSettings.appendChild(itemCartContentSettingsDelete);
     itemCartContentSettingsDelete.classList.add("cart__item__content__settings__delete");
