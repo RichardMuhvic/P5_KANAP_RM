@@ -14,7 +14,9 @@ for (let i=0; i<productLocalStorage.length; i++) {
         }); 
 };
 
-
+//----------------------------------------------------------------------
+//-------Création de la fonction qui va créer le DOM dynamique----------
+//----------------------------------------------------------------------
 function panierProduct(product, productStorage) {
     //----------Création de l'intégralité du block----------------------
     const sectionItem = document.getElementById("cart__items");
@@ -22,82 +24,64 @@ function panierProduct(product, productStorage) {
     sectionItem.appendChild(itemArticle);
     itemArticle.classList.add("cart__item");
 
-    const sectionCartItem = document.getElementsByClassName("cart__item")[0];
     let itemCartImg = document.createElement("div");
-    sectionCartItem.appendChild(itemCartImg);
+    itemArticle.appendChild(itemCartImg);
     itemCartImg.classList.add("cart__item__img");
 
-    const sectionImg = document.getElementsByClassName("cart__item__img")[0];
     let itemImg = document.createElement("img");
-    sectionImg.appendChild(itemImg);
+    itemCartImg.appendChild(itemImg);
     itemImg.src = product.imageUrl;
+    console.log(product)
 
     // ----- création du bloc, div , cart__item__content ---------- //
     let itemCartContent = document.createElement("div");
-    sectionCartItem.appendChild(itemCartContent);
+    itemArticle.appendChild(itemCartContent);
     itemCartContent.classList.add("cart__item__content");
 
-    // ------ cration du bloc, div, cart__item__content__description --------//
-    const sectionCartContent = document.getElementsByClassName("cart__item__content")[0];
+    // ------ création du bloc, div, cart__item__content__description --------//
     let itemCartContentDescription = document.createElement("div");
-    sectionCartContent.appendChild(itemCartContentDescription);
+    itemCartContent.appendChild(itemCartContentDescription);
     itemCartContentDescription.classList.add("cart__item__content__description");
 
-    const sectionNomProduit = document.getElementsByClassName("cart__item__content__description")[0];
     let itemNomProduit = document.createElement("h2");
-    sectionNomProduit.appendChild(itemNomProduit);
+    itemCartContentDescription.appendChild(itemNomProduit);
     itemNomProduit.innerText = product.name;
 
-    const sectionCouleurProduit = document.getElementsByClassName("cart__item__content__description")[0];
     let itemCouleurProduit = document.createElement("p");
-    sectionCouleurProduit.appendChild(itemCouleurProduit);
+    itemCartContentDescription.appendChild(itemCouleurProduit);
     itemCouleurProduit.innerText = productStorage.productColors ;
 
-    const sectionPrixProduit = document.getElementsByClassName("cart__item__content__description")[0];
     let itemPrixProduit = document.createElement("p");
-    sectionPrixProduit.appendChild(itemPrixProduit);
+    itemCartContentDescription.appendChild(itemPrixProduit);
     itemPrixProduit.innerText = product.price;
 
     // ----- création du bloc, div, cart__item__content__settings------------//
-    const sectionCartContentSetting = document.getElementsByClassName("cart__item__content")[0];
     let itemCartContentSettings = document.createElement("div");
-    sectionCartContentSetting.appendChild(itemCartContentSettings);
+    itemCartContent.appendChild(itemCartContentSettings);
     itemCartContentSettings.classList.add("cart__item__content__settings");
 
     let itemCartContentSettingsQuantity = document.createElement("div");
-    sectionCartContentSetting.appendChild(itemCartContentSettingsQuantity);
+    itemCartContentSettings.appendChild(itemCartContentSettingsQuantity);
     itemCartContentSettingsQuantity.classList.add("cart__item__content__settings__quantity");
 
-    const sectionQuantityProduit = document.getElementsByClassName("cart__item__content__settings__quantity")[0];
     let itemQuantityProduit = document.createElement("p");
-    sectionQuantityProduit.appendChild(itemQuantityProduit);
+    itemCartContentSettingsQuantity.appendChild(itemQuantityProduit);
 
-    const sectionInputQuantity = document.getElementsByClassName("cart__item__content__settings__quantity")[0];
     let itemInputQuantity = document.createElement("input");
-    sectionInputQuantity.appendChild(itemInputQuantity);
+    itemCartContentSettingsQuantity.appendChild(itemInputQuantity);
     itemInputQuantity.classList.add("itemQuantity");
     itemInputQuantity.value = productStorage.productQuantity;
 
     // ----- création du bloc, div, cart__item__content__settings__delete ---//
     const sectionCartItemContentSettingsDelete = document.getElementsByClassName(".cart__item__content__settings")[0];
     let itemCartContentSettingsDelete = document.createElement("div");
-    sectionCartItemContentSettingsDelete.appendChild(itemCartContentSettingsDelete);
+    itemCartContentSettings.appendChild(itemCartContentSettingsDelete);
     itemCartContentSettingsDelete.classList.add("cart__item__content__settings__delete");
 
-    const sectionBtnDeleteItem = document.getElementsByClassName("cart__item__content__settings__delete")[0];
     let deleteItem = document.createElement("p");
-    sectionBtnDeleteItem.appendChild(deleteItem);
+    itemCartContentSettingsDelete.appendChild(deleteItem);
     deleteItem.classList.add(".deleteItem");
 };
-//------------------------------------------------------
-//------------------création de la boucle---------------
-/*------------------------------------------------------
-for (let i=0 ; i<"jenesaispasquoiecrire", i++) {
-    "boucle la fonction au nombre de produits présent dans le panier"
-}
-*/
-
-
 
 //------------------------------------------------------
 //-------Changement quantité et suppression produit-----
